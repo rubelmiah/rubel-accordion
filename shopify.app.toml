@@ -2,7 +2,7 @@
 
 client_id = "99b3e04ea1c6b807a6bf782eb576d194"
 name = "rubel-accordion"
-application_url = "https://example.com"
+application_url = "https://rubel-accordion-production.up.railway.app"
 embedded = true
 
 [access_scopes]
@@ -45,8 +45,7 @@ api_version = "2026-07"
   topics = [ "app/scopes_update" ]
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://rubel-accordion-production.up.railway.app/api/auth" ]
 
 [build]
-include_config_on_deploy = true
 automatically_update_urls_on_dev = true
