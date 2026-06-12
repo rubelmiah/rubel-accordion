@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useFetcher } from "react-router";
 import { useAppBridge } from "@shopify/app-bridge-react";
+import RichTextEditor from "./RichTextEditor";
 
 const DISPLAY_ON_OPTIONS = ["Product", "Page", "Collections"];
 
@@ -83,17 +84,7 @@ export default function AccordionForm({ accordion, heading }) {
             {...(titleError ? { error: titleError } : {})}
           ></s-text-field>
 
-          <s-select
-            label="Display on"
-            value={displayOn}
-            onChange={(e) => setDisplayOn(e.target.value)}
-          >
-            {DISPLAY_ON_OPTIONS.map((option) => (
-              <s-option key={option} value={option}>
-                {option}
-              </s-option>
-            ))}
-          </s-select>
+          
         </s-stack>
       </s-section>
 
@@ -128,12 +119,11 @@ export default function AccordionForm({ accordion, heading }) {
                   onChange={(e) => updateItem(index, "heading", e.target.value)}
                   onInput={(e) => updateItem(index, "heading", e.target.value)}
                 ></s-text-field>
-                <s-text-area
+                <RichTextEditor
                   label="Content"
                   value={item.content}
-                  onChange={(e) => updateItem(index, "content", e.target.value)}
-                  onInput={(e) => updateItem(index, "content", e.target.value)}
-                ></s-text-area>
+                  onChange={(html) => updateItem(index, "content", html)}
+                />
               </s-stack>
             </s-box>
           ))}
@@ -146,6 +136,17 @@ export default function AccordionForm({ accordion, heading }) {
       </s-section>
 
       <s-section slot="aside" heading="About">
+        <s-select
+            label="Display on"
+            value={displayOn}
+            onChange={(e) => setDisplayOn(e.target.value)}
+          >
+            {DISPLAY_ON_OPTIONS.map((option) => (
+              <s-option key={option} value={option}>
+                {option}
+              </s-option>
+            ))}
+          </s-select>
         <s-paragraph>
           Give your accordion a title, choose where it appears, then add the
           collapsible items shoppers will see on your storefront.
