@@ -32,3 +32,18 @@ model Session {
   refreshToken        String?
   refreshTokenExpires DateTime?
 }
+
+// An accordion block configured by a merchant. `displayOn` is where it should
+// surface in the storefront (Product / Page / Collections); `items` is a JSON
+// array of { heading, content } panels.
+model Accordion {
+  id        String   @id @default(cuid())
+  shop      String
+  title     String   @default("Accordion Title")
+  displayOn String   @default("Product")
+  items     String   @default("[]")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([shop])
+}
